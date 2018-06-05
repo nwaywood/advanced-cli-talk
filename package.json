@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-emotion": "^9.1.3",
     "spectacle-scripts": "2.0.0"
   },
   "scripts": {
