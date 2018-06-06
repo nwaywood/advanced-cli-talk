@@ -10,6 +10,7 @@ import {
   Slide,
   Text,
   Code,
+  CodePane,
   Image,
   // Appear,
 } from 'spectacle';
@@ -20,6 +21,11 @@ import styled from "react-emotion"
 
 import ZImage from "./assets/z.png"
 import FzfImage from "./assets/fzf.png"
+import UpImage from "./assets/up.png"
+import RangerImage from "./assets/ranger.png"
+import RangerExampleImage from "./assets/ranger_example.png"
+
+import HistoryEx from "./assets/history.example"
 
 // Require CSS
 require('normalize.css');
@@ -224,6 +230,49 @@ export default class Presentation extends React.Component {
                 <ListItem>fzf wiki on github is full of HEAPS of other examples of fzf</ListItem>
                 <ListItem>Demo...</ListItem>
             </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Navigation - up</Heading>
+            <Image src={UpImage} width="70%" />
+            <List>
+                <ListItem><a href="github.com/shannonmoeller/up">shannonmoeller/up</a></ListItem>
+                <ListItem>This is for you if you are sick of typing<br /><Code>$ cd ../../..</Code></ListItem>
+                <ListItem>Go up 3 directories:<br /><Code>$ up 3</Code></ListItem>
+                <ListItem>Go up to the directory called <Code>code</Code>:<br /><Code>$ up code</Code></ListItem>
+                <ListItem>Demo...</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading fit textColor="tertiary">Navigation - ranger</Heading>
+            <Image src={RangerImage} width="70%" />
+            <List>
+                <ListItem>A complete file manager in the console</ListItem>
+            </List>
+            <Image src={RangerExampleImage} width="80%" />
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading fit textColor="tertiary">Navigation - summary</Heading>
+            <List>
+                <ListItem><Code>z</Code> - lets you quickly jump to any dir</ListItem>
+                <ListItem><Code>fzf</Code> - lets you quickly jump to sub dirs</ListItem>
+                <ListItem><Code>up</Code> - lets you quickly jump to parent dirs</ListItem>
+                <ListItem><Code>ranger</Code> - file manager for general navigation</ListItem>
+            </List>
+        </Slide>
+        <Slide bgColor="tertiary">
+          <Heading textColor="primary">Executing Commands</Heading>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Commands Basics</Heading>
+            <List>
+                <ListItem>Pressing "up" will traverse command history</ListItem>
+                <ListItem>Typing a partial command then pressing "up" will traverse the subset of command history that matches</ListItem>
+                <ListItem>Tip: If you want each shell instance to have its own history</ListItem>
+            </List>
+            <CodePane style={{ fontSize: "30px" }} lang="javascript" source={`unsetopt history\nunsetopt inc_append_history`} />
+        </Slide>
+        <Slide bgColor="tertiary">
+          <Heading textColor="primary">Discovery and Search</Heading>
         </Slide>
       </Deck>
     );
