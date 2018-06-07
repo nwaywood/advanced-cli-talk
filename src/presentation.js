@@ -24,8 +24,10 @@ import FzfImage from "./assets/fzf.png"
 import UpImage from "./assets/up.png"
 import RangerImage from "./assets/ranger.png"
 import RangerExampleImage from "./assets/ranger_example.png"
-
-import HistoryEx from "./assets/history.example"
+import MyPrompt from "./assets/my_prompt.png"
+import OhMyZsh from "./assets/oh_my_zsh.png"
+import Tldr from "./assets/tldr.png"
+import Tmux from "./assets/tmux.png"
 
 // Require CSS
 require('normalize.css');
@@ -271,8 +273,263 @@ export default class Presentation extends React.Component {
             </List>
             <CodePane style={{ fontSize: "30px" }} lang="javascript" source={`unsetopt history\nunsetopt inc_append_history`} />
         </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Commands - fzf</Heading>
+            <List>
+                <ListItem>In navigation we covered fzf's <Code>alt-C</Code> command</ListItem>
+                <ListItem>The other two commands that fzf come with out-of-the-box are useful for executing commands</ListItem>
+                <ListItem><Code>ctrl-R</Code> pastes the selected command from history onto the command line</ListItem>
+                <ListItem>
+                    <Code>ctrl-T</Code> pastes the selected files and directories onto the command line
+                    <List padding="0 0 0 40px">
+                        <ListItem>Useful for commands that take files/dirs as arguments</ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Demo...</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading fit textColor="tertiary">Commands - Editing</Heading>
+            <List>
+                <ListItem>
+                    Shells come with built in functionality for editing commands
+                    <List padding="0 0 0 40px">
+                        <ListItem>vi mode and emacs mode are available</ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>
+                    Emacs mode is enabled by default
+                    <List padding="0 0 0 40px">
+                        <ListItem><Code>ctrl - a</Code> - move cursor to start of line</ListItem>
+                        <ListItem><Code>ctrl - e</Code> - move cursor to end of line</ListItem>
+                        <ListItem><Code>ctrl - u</Code> - delete line</ListItem>
+                        <ListItem><Code>ctrl - w</Code> - delete word</ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Demo...</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading fit textColor="tertiary">Commands - Editing</Heading>
+            <List>
+                <ListItem>
+                    vi editing mode can be enabled by adding the following to your shell config
+                    <List padding="0 0 0 40px">
+                        <ListItem><Code>set -o vi</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>
+                    This gives you access to normal mode (via <Code>escape</Code> by default)
+                    <List padding="0 0 0 40px">
+                        <ListItem><Code>^</Code>, <Code>$</Code>, <Code>b</Code>, <Code>w</Code> and <Code>e</Code></ListItem>
+                        <ListItem><Code>i</Code>, <Code>I</Code>, <Code>a</Code> and <Code>A</Code></ListItem>
+                        <ListItem><Code>h</Code>, <Code>j</Code>, <Code>k</Code> and <Code>l</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Demo...</ListItem>
+                <ListItem>It's also possible to enable both vi and emacs mode</ListItem>
+            </List>
+        </Slide>
         <Slide bgColor="tertiary">
           <Heading textColor="primary">Discovery and Search</Heading>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Discovery - tree</Heading>
+            <List>
+                <ListItem>
+                    Install:
+                    <List padding="10px 0 10px 40px">
+                        <ListItem>MacOS - <Code>brew install tree</Code></ListItem>
+                        <ListItem>Windows - <Code>Install-Module -Name Tree</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Show the contents of the current directory as a tree</ListItem>
+                <ListItem>
+                    Handy flags
+                    <List padding="0 0 0 40px">
+                        <ListItem><Code>-d</Code> - Show dirs only</ListItem>
+                        <ListItem><Code>-a</Code> - Show hidden files</ListItem>
+                        <ListItem><Code>-L num</Code> - num is the depth of the tree</ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Demo...</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Search - find</Heading>
+            <List>
+                <ListItem><Code>find</Code> comes pre installed on unix</ListItem>
+                <ListItem>On windows the <Code>dir</Code> command is the equivalent</ListItem>
+                <ListItem>Find files unders the given directory tree, recursively</ListItem>
+                <ListItem>
+                    Usage
+                    <List padding="0 0 0 40px">
+                        <ListItem>Find files by extension:<br /><Code>$ find root_path -name "*.ext"</Code></ListItem>
+                        <ListItem>Find files matching path pattern:<br /><Code>$ find root_path -path "**/lib/*"</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Demo...</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Search - "grep"</Heading>
+            <List>
+                <ListItem>
+                    Install:
+                    <List padding="10px 0 10px 40px">
+                        <ListItem><Code style={{fontSize: "2.2rem"}}>brew install the_silver_surfer ripgrep</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem><Code>grep</Code> is a command line search tool</ListItem>
+                <ListItem>However grep is slow and not very user friendly</ListItem>
+                <ListItem>The Silver Surfer (<Code>ag</Code>) and ripgrep (<Code>rg</Code>) are two popular, fast, grep replacements with sensible defaults</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Search - "grep"</Heading>
+            <List>
+                <ListItem>
+                    The Silver Surfer (<Code>ag</Code>) and ripgrep (<Code>rg</Code>) defaults include
+                    <List padding="0 0 0 40px">
+                        <ListItem>Ignores VCS dirs by default</ListItem>
+                        <ListItem>Ignores .gitignored files/dirs and hidden/binary files by default</ListItem>
+                        <ListItem>Defaults to doing a recursive directory search</ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>More intuitive command line flags/options</ListItem>
+                <ListItem>Support config files for global (or project level) customization</ListItem>
+                <ListItem>Demo...</ListItem>
+                <ListItem><Code>ag</Code>/<Code>rg</Code> are amazing for editor integrations</ListItem>
+            </List>
+        </Slide>
+        <Slide bgColor="tertiary">
+          <Heading textColor="primary">Miscellaneous</Heading>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Custom Prompt</Heading>
+            <List>
+                <ListItem>The default bash prompt is not very informative or helpful</ListItem>
+                <ListItem>
+                    A good prompt should display useful information, such as
+                    <List padding="0 0 0 40px">
+                        <ListItem>Current directory/path (no more <Code>pwd</Code>)</ListItem>
+                        <ListItem>Current branch</ListItem>
+                        <ListItem>Current repository status</ListItem>
+                        <ListItem>Error codes</ListItem>
+                    </List>
+                </ListItem>
+            </List>
+            <Image src={MyPrompt} width="70%" />
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading fit textColor="tertiary">Custom Prompt - oh-my-zsh</Heading>
+            <Image src={OhMyZsh} width="70%" />
+            <List>
+                <ListItem>There are lots of different ways to create a custom prompt</ListItem>
+                <ListItem>oh-my-zsh is framework for zsh which makes it super easy</ListItem>
+                <ListItem>Hundreds of out-of-the-box prompts to choose from</ListItem>
+                <ListItem>
+                    Your prompt can display whatever is useful for you
+                    <List padding="0 0 0 40px">
+                        <ListItem>Language version</ListItem>
+                        <ListItem>Time</ListItem>
+                        <ListItem>Git information</ListItem>
+                        <ListItem>etc</ListItem>
+                    </List>
+                </ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Aliases</Heading>
+            <List>
+                <ListItem>Aliases are useful for annoying to type commands or for commands where you always want some setting applied</ListItem>
+                <ListItem><Code>alias d="docker"</Code></ListItem>
+                <ListItem><Code>alias dc="docker-compose"</Code></ListItem>
+                <ListItem><Code>alias tree="tree -I node_modules"</Code></ListItem>
+                <ListItem>VM ssh commands</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Paste and Copy</Heading>
+            <List>
+                <ListItem>Mac - <Code>pbcopy</Code>, <Code>pbpaste</Code></ListItem>
+                <ListItem>Unix - <Code>xclip</Code></ListItem>
+                <ListItem>Windows - <Code>clip</Code></ListItem>
+                <ListItem>Instead of having to manually select and copy output from a command, just pipe it directly into your clipboard!</ListItem>
+                <ListItem>e.g. <Code>$ cat example.json | pbcopy</Code></ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">tldr</Heading>
+            <Image src={Tldr} width="70%" />
+            <List>
+                <ListItem>
+                    Install:
+                    <List padding="10px 0 10px 40px">
+                        <ListItem><Code>$ brew install tldr</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Simplied <Code>man</Code> pages</ListItem>
+                <ListItem>Provides simple explanation of command and shows practical examples</ListItem>
+                <ListItem>Usage eg: <Code>$ tldr tar</Code> instead of<br /><Code>$ man tar</Code></ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">tmux</Heading>
+            <Image src={Tmux} width="70%" />
+            <List>
+                <ListItem>
+                    Install:
+                    <List padding="10px 0 10px 40px">
+                        <ListItem><Code>$ brew install tmux</Code></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem><Code>tmux</Code> is a terminal multiplexer</ListItem>
+                <ListItem>Similar to GNU Screen, but newer/better</ListItem>
+                <ListItem>In laymans terms, it lets you manage multiple sessions within a single terminal window</ListItem>
+                <ListItem>Each session is composed of windows and panes</ListItem>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">tmux</Heading>
+            <List>
+                <ListItem>Useful if you work on multiple projects/things that require some set of shells</ListItem>
+                <ListItem>MUST HAVE if you often work on remote servers!</ListItem>
+                <ListItem>Warning: This is not just a command, it is an application. And as such, has a steeper learning curve</ListItem>
+            </List>
+        </Slide>
+        <Slide bgColor="tertiary">
+          <Heading textColor="primary">Other</Heading>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Other</Heading>
+            <List>
+                <ListItem>
+                    "SysAdmin" commands
+                    <List padding="0 0 0 40px">
+                        <ListItem><Code>sed</Code>, <Code>awk</Code>, <Code>netstat</Code>, <Code>tail</Code></ListItem>, etc
+                    </List>
+                </ListItem>
+                <ListItem>
+                    Domain specific commands
+                    <List padding="0 0 0 40px">
+                        <ListItem><Code>jq</Code> - Command line JSON processor</ListItem>
+                        <ListItem>csvkit - Suite of tools for working with CSV</ListItem>
+                        <ListItem>HTTPie (<Code>http</Code>) - A user friendly cURL replacement</ListItem>
+                        <ListItem><Code>hub</Code> - hub helps you win at git</ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Theming</ListItem>
+            </List>
+        </Slide>
+        <Slide bgColor="tertiary">
+          <Heading textColor="primary">Thank you</Heading>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">References</Heading>
+            <List>
+                <ListItem>https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340</ListItem>
+            </List>
         </Slide>
       </Deck>
     );
