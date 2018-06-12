@@ -128,7 +128,7 @@ export default class Presentation extends React.Component {
                 <ListItem>
                     MacOS
                     <List padding="0 0 10px 40px">
-                        <ListItem>Homebrew (<InCode>brew</InCode>) - <a href="brew.sh">brew.sh</a></ListItem>
+                        <ListItem>Homebrew (<InCode>brew</InCode>) - <a href="https://brew.sh/">brew.sh</a></ListItem>
                     </List>
                 </ListItem>
                 <ListItem>
@@ -146,12 +146,12 @@ export default class Presentation extends React.Component {
                     Apps
                     <List padding="0 0 10px 40px">
                         <ListItem>
-                            iTerm2 - <a href="www.iterm2.com">iterm2.com</a> (macOS only)
+                            iTerm2 - <a href="https://www.iterm2.com/">iterm2.com</a> (macOS only)
                             <List padding="5px 0 5px 40px">
                                 <ListItem><InCode>$ brew install iterm2</InCode></ListItem>
                             </List>
                         </ListItem>
-                        <ListItem>Hyper - <a href="hyper.is">hyper.is</a> (cross platform)</ListItem>
+                        <ListItem>Hyper - <a href="https://hyper.is/">hyper.is</a> (cross platform)</ListItem>
                     </List>
                 </ListItem>
                 <Appear>
@@ -245,7 +245,7 @@ export default class Presentation extends React.Component {
             <Heading size={2} textColor="tertiary">Navigation - up</Heading>
             <Image src={UpImage} width="70%" />
             <List>
-                <ListItem><a href="github.com/shannonmoeller/up">shannonmoeller/up</a></ListItem>
+                <ListItem><a href="https://github.com/shannonmoeller/up">shannonmoeller/up</a></ListItem>
                 <ListItem>This is for you if you are sick of typing<br /><InCode>$ cd ../../..</InCode></ListItem>
                 <ListItem>Go up 3 directories:<br /><InCode>$ up 3</InCode></ListItem>
                 <ListItem>Go up to the directory called <InCode>code</InCode>:<br /><InCode>$ up code</InCode></ListItem>
