@@ -12,7 +12,7 @@ import {
   Code,
   CodePane,
   Image,
-  // Appear,
+  Appear,
 } from 'spectacle';
 
 // Import theme
@@ -28,6 +28,8 @@ import MyPrompt from "./assets/my_prompt.png"
 import OhMyZsh from "./assets/oh_my_zsh.png"
 import Tldr from "./assets/tldr.png"
 import Tmux from "./assets/tmux.png"
+import Ag from "./assets/ag.png"
+import Rg from "./assets/rg.png"
 
 // Require CSS
 require('normalize.css');
@@ -52,6 +54,7 @@ const InCode = styled(Code)`
   border-radius: 3px;
   padding-left: 2px;
   padding-right: 2px;
+  box-sizing: border-box;
 `;
 
 export default class Presentation extends React.Component {
@@ -88,7 +91,7 @@ export default class Presentation extends React.Component {
             <ListItem>Discovery and Search</ListItem>
             <ListItem>Miscellaneous</ListItem>
             <ListItem>Other (not covered)</ListItem>
-            <ListItem>Links</ListItem>
+            <ListItem>References</ListItem>
           </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -99,14 +102,14 @@ export default class Presentation extends React.Component {
             <List>
                 <ListItem>
                     Windows shell
-                    <List padding="10px 0 10px 40px">
+                    <List padding="0 0 10px 40px">
                         <ListItem>Command Prompt</ListItem>
                         <ListItem>Powershell</ListItem>
                     </List>
                 </ListItem>
                 <ListItem>
                     Unix shell
-                    <List padding="10px 0 10px 40px">
+                    <List padding="0 0 10px 40px">
                         <ListItem>Cygwin/GitBash etc (pre Windows 10)</ListItem>
                         <ListItem>Bash shell (>= Windows 10)</ListItem>
                     </List>
@@ -118,20 +121,20 @@ export default class Presentation extends React.Component {
             <List>
                 <ListItem>
                     Windows (PS only)
-                    <List padding="10px 0 10px 40px">
+                    <List padding="0 0 10px 40px">
                         <ListItem>PS has its own package manager, PS Gallery</ListItem>
                     </List>
                 </ListItem>
                 <ListItem>
                     MacOS
-                    <List padding="10px 0 10px 40px">
+                    <List padding="0 0 10px 40px">
                         <ListItem>Homebrew (<InCode>brew</InCode>) - <a href="brew.sh">brew.sh</a></ListItem>
                     </List>
                 </ListItem>
                 <ListItem>
                     Unix Distros
-                    <List padding="10px 0 10px 40px">
-                        <ListItem><Code>apt-get</Code>, <Code>yum</Code> etc</ListItem>
+                    <List padding="0 0 10px 40px">
+                        <ListItem><InCode>apt-get</InCode>, <InCode>yum</InCode> etc</ListItem>
                     </List>
                 </ListItem>
             </List>
@@ -141,25 +144,27 @@ export default class Presentation extends React.Component {
             <List>
                 <ListItem>
                     Apps
-                    <List padding="10px 0 10px 40px">
+                    <List padding="0 0 10px 40px">
                         <ListItem>
                             iTerm2 - <a href="www.iterm2.com">iterm2.com</a> (macOS only)
-                            <List padding="10px 0 10px 40px">
-                                <ListItem><Code>brew install iterm2</Code></ListItem>
+                            <List padding="5px 0 5px 40px">
+                                <ListItem><InCode>$ brew install iterm2</InCode></ListItem>
                             </List>
                         </ListItem>
                         <ListItem>Hyper - <a href="hyper.is">hyper.is</a> (cross platform)</ListItem>
                     </List>
                 </ListItem>
-                <ListItem>
-                    Adds functionality such as:
-                    <List padding="10px 0 10px 40px">
-                        <ListItem>Horizontal and vertical splits</ListItem>
-                        <ListItem>Full screen mode</ListItem>
-                        <ListItem>Richer theming</ListItem>
-                        <ListItem>tmux integration</ListItem>
-                    </List>
-                </ListItem>
+                <Appear>
+                    <ListItem>
+                        Adds functionality such as:
+                        <List padding="0 0 10px 40px">
+                            <ListItem>Horizontal and vertical splits</ListItem>
+                            <ListItem>Full screen mode</ListItem>
+                            <ListItem>Richer theming</ListItem>
+                            <ListItem>tmux integration</ListItem>
+                        </List>
+                    </ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -169,19 +174,19 @@ export default class Presentation extends React.Component {
             <Heading size={2} textColor="tertiary">Navigation Basics</Heading>
             <List>
                 <ListItem>
-                    <Code>cd</Code> - Change directory
+                    <InCode>cd</InCode> - Change directory
                     <List padding="10px 0 10px 40px">
-                        <ListItem><Code>cd ..</Code>, <Code>cd ~</Code>, <Code>cd -</Code></ListItem>
+                        <ListItem><InCode>cd ..</InCode>, <InCode>cd ~</InCode>, <InCode>cd -</InCode></ListItem>
                     </List>
                 </ListItem>
                 <ListItem>
-                <Code>ls</Code> - List directory contents
+                <InCode>ls</InCode> - List directory contents
                 <List padding="10px 0 10px 40px">
-                    <ListItem><Code>ls -lh</Code>, <Code>ls -lAh</Code>, <Code>ls -G</Code></ListItem>
+                    <ListItem><InCode>ls -lh</InCode>, <InCode>ls -lAh</InCode>, <InCode>ls -G</InCode></ListItem>
                 </List>
                 </ListItem>
                 <ListItem>
-                    <Code>pwd</Code> - Print working directory name
+                    <InCode>pwd</InCode> - Print working directory name
                 </ListItem>
             </List>
         </Slide>
@@ -189,38 +194,37 @@ export default class Presentation extends React.Component {
             <Heading size={2} textColor="tertiary">Navigation - z</Heading>
             <Image src={ZImage} width="70%" />
             <List>
+                <ListItem>Install: <InCode>$ brew install z</InCode></ListItem>
                 <ListItem>
-                    Install:
-                    <List padding="10px 0 10px 40px">
-                        <ListItem>MacOS - <Code>brew install z</Code></ListItem>
-                        <ListItem>Windows - <Code>Install-Module -Name z</Code></ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>
-                    <Code>z</Code> tracks all of your visited directories, based on frequency
+                    <InCode>z</InCode> tracks all of your visited directories, based on frequency
                 </ListItem>
                 <ListItem>z lets you quickly navigate to any visited directory using regex patterns</ListItem>
-                <ListItem>Usage <Code>z [-chlrtx] [regex1 ...]</Code></ListItem>
-                <ListItem>Demo...</ListItem>
+                <Appear>
+                    <div>
+                        <ListItem>Usage <InCode>z [-chlrtx] [regex1 ...]</InCode></ListItem>
+                        <ListItem>Demo...</ListItem>
+                    </div>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Navigation - fzf</Heading>
             <Image src={FzfImage} width="70%" />
             <List>
+                <ListItem>Install: <InCode>$ brew install fzf</InCode></ListItem>
                 <ListItem>
-                    Install:
-                    <List padding="10px 0 10px 40px">
-                        <ListItem>MacOS - <Code>brew install fzf</Code></ListItem>
-                        <ListItem>Windows - <Code>Install-Module -Name PSFzf</Code></ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>
-                    <Code>fzf</Code> is a general purpose command-line fuzzy finder
+                    <InCode>fzf</InCode> is a general purpose command-line fuzzy finder
                 </ListItem>
                 <ListItem>It's a very powerful and flexible tool that has lots of uses</ListItem>
-                <ListItem>However, some of its out-of-the-box functionality is useful for navigation</ListItem>
-                <ListItem><Code>alt-C</Code> opens a fuzzy finder for cd'ing into the selected directory, demo...</ListItem>
+                <Appear>
+                    <div>
+                        <ListItem>However, some of its out-of-the-box functionality is useful for navigation</ListItem>
+                        <ListItem><InCode>alt-C</InCode> opens a fuzzy finder for <InCode>cd</InCode>'ing into a nested directory</ListItem>
+                    </div>
+                </Appear>
+                <Appear>
+                    <ListItem>Demo...</ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
@@ -229,8 +233,12 @@ export default class Presentation extends React.Component {
                 <ListItem>fzf enables you to display the base output of z in a fuzzy list</ListItem>
                 <ListItem>This is useful when you can't remember the exact name of a directory</ListItem>
                 <ListItem>Or when you can't be bothered providing a regex sequence to z from memory</ListItem>
-                <ListItem>fzf wiki on github is full of HEAPS of other examples of fzf</ListItem>
-                <ListItem>Demo...</ListItem>
+                <Appear>
+                    <div>
+                        <ListItem><a href="https://github.com/junegunn/fzf/wiki/examples">fzf wiki</a> on github is full of HEAPS of other examples of fzf</ListItem>
+                        <ListItem>Demo...</ListItem>
+                    </div>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
@@ -238,27 +246,30 @@ export default class Presentation extends React.Component {
             <Image src={UpImage} width="70%" />
             <List>
                 <ListItem><a href="github.com/shannonmoeller/up">shannonmoeller/up</a></ListItem>
-                <ListItem>This is for you if you are sick of typing<br /><Code>$ cd ../../..</Code></ListItem>
-                <ListItem>Go up 3 directories:<br /><Code>$ up 3</Code></ListItem>
-                <ListItem>Go up to the directory called <Code>code</Code>:<br /><Code>$ up code</Code></ListItem>
-                <ListItem>Demo...</ListItem>
+                <ListItem>This is for you if you are sick of typing<br /><InCode>$ cd ../../..</InCode></ListItem>
+                <ListItem>Go up 3 directories:<br /><InCode>$ up 3</InCode></ListItem>
+                <ListItem>Go up to the directory called <InCode>code</InCode>:<br /><InCode>$ up code</InCode></ListItem>
+                <Appear>
+                    <ListItem>Demo...</ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading fit textColor="tertiary">Navigation - ranger</Heading>
             <Image src={RangerImage} width="70%" />
             <List>
+                <ListItem>Install: <InCode>$ brew install ranger</InCode></ListItem>
                 <ListItem>A complete file manager in the console</ListItem>
             </List>
             <Image src={RangerExampleImage} width="80%" />
         </Slide>
         <Slide progressColor="quartenary">
-            <Heading fit textColor="tertiary">Navigation - summary</Heading>
+            <Heading fit textColor="tertiary">Navigation - Summary</Heading>
             <List>
-                <ListItem><Code>z</Code> - lets you quickly jump to any dir</ListItem>
-                <ListItem><Code>fzf</Code> - lets you quickly jump to sub dirs</ListItem>
-                <ListItem><Code>up</Code> - lets you quickly jump to parent dirs</ListItem>
-                <ListItem><Code>ranger</Code> - file manager for general navigation</ListItem>
+                <ListItem><InCode>z</InCode> - lets you quickly jump to any dir</ListItem>
+                <ListItem><InCode>fzf</InCode> - lets you quickly jump to sub dirs</ListItem>
+                <ListItem><InCode>up</InCode> - lets you quickly jump to parent dirs</ListItem>
+                <ListItem><InCode>ranger</InCode> - file manager for general navigation</ListItem>
             </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -276,16 +287,18 @@ export default class Presentation extends React.Component {
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Commands - fzf</Heading>
             <List>
-                <ListItem>In navigation we covered fzf's <Code>alt-C</Code> command</ListItem>
+                <ListItem>In navigation we covered fzf's <InCode>alt-C</InCode> command</ListItem>
                 <ListItem>The other two commands that fzf come with out-of-the-box are useful for executing commands</ListItem>
-                <ListItem><Code>ctrl-R</Code> pastes the selected command from history onto the command line</ListItem>
+                <ListItem><InCode>ctrl-R</InCode> pastes the selected command from history onto the command line</ListItem>
                 <ListItem>
-                    <Code>ctrl-T</Code> pastes the selected files and directories onto the command line
+                    <InCode>ctrl-T</InCode> pastes the selected files and directories onto the command line
                     <List padding="0 0 0 40px">
                         <ListItem>Useful for commands that take files/dirs as arguments</ListItem>
                     </List>
                 </ListItem>
-                <ListItem>Demo...</ListItem>
+                <Appear>
+                    <ListItem>Demo...</ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
@@ -297,16 +310,20 @@ export default class Presentation extends React.Component {
                         <ListItem>vi mode and emacs mode are available</ListItem>
                     </List>
                 </ListItem>
-                <ListItem>
-                    Emacs mode is enabled by default
-                    <List padding="0 0 0 40px">
-                        <ListItem><Code>ctrl - a</Code> - move cursor to start of line</ListItem>
-                        <ListItem><Code>ctrl - e</Code> - move cursor to end of line</ListItem>
-                        <ListItem><Code>ctrl - u</Code> - delete line</ListItem>
-                        <ListItem><Code>ctrl - w</Code> - delete word</ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>Demo...</ListItem>
+                <Appear>
+                    <ListItem>
+                        Emacs mode is enabled by default
+                        <List padding="0 0 0 40px">
+                            <ListItem padding="0 0 5px 0"><InCode>ctrl - a</InCode> - move cursor to start of line</ListItem>
+                            <ListItem padding="0 0 5px 0"><InCode>ctrl - e</InCode> - move cursor to end of line</ListItem>
+                            <ListItem padding="0 0 5px 0"><InCode>ctrl - u</InCode> - delete line</ListItem>
+                            <ListItem><InCode>ctrl - w</InCode> - delete word</ListItem>
+                        </List>
+                    </ListItem>
+                </Appear>
+                <Appear>
+                    <ListItem>Demo...</ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
@@ -315,19 +332,25 @@ export default class Presentation extends React.Component {
                 <ListItem>
                     vi editing mode can be enabled by adding the following to your shell config
                     <List padding="0 0 0 40px">
-                        <ListItem><Code>set -o vi</Code></ListItem>
+                        <ListItem><InCode>set -o vi</InCode></ListItem>
                     </List>
                 </ListItem>
-                <ListItem>
-                    This gives you access to normal mode (via <Code>escape</Code> by default)
-                    <List padding="0 0 0 40px">
-                        <ListItem><Code>^</Code>, <Code>$</Code>, <Code>b</Code>, <Code>w</Code> and <Code>e</Code></ListItem>
-                        <ListItem><Code>i</Code>, <Code>I</Code>, <Code>a</Code> and <Code>A</Code></ListItem>
-                        <ListItem><Code>h</Code>, <Code>j</Code>, <Code>k</Code> and <Code>l</Code></ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>Demo...</ListItem>
-                <ListItem>It's also possible to enable both vi and emacs mode</ListItem>
+                <Appear>
+                    <ListItem>
+                        This gives you access to normal mode (via <InCode>escape</InCode> by default)
+                        <List padding="0 0 0 40px">
+                            <ListItem padding="5px 0 5px 0"><InCode>^</InCode>, <InCode>$</InCode>, <InCode>b</InCode>, <InCode>w</InCode> and <InCode>e</InCode></ListItem>
+                            <ListItem padding="0 0 5px 0"><InCode>i</InCode>, <InCode>I</InCode>, <InCode>a</InCode> and <InCode>A</InCode></ListItem>
+                            <ListItem><InCode>h</InCode>, <InCode>j</InCode>, <InCode>k</InCode> and <InCode>l</InCode></ListItem>
+                        </List>
+                    </ListItem>
+                </Appear>
+                <Appear>
+                    <div>
+                        <ListItem>Demo...</ListItem>
+                        <ListItem>It's also possible to enable both vi and emacs mode</ListItem>
+                    </div>
+                </Appear>
             </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -336,70 +359,84 @@ export default class Presentation extends React.Component {
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Discovery - tree</Heading>
             <List>
-                <ListItem>
-                    Install:
-                    <List padding="10px 0 10px 40px">
-                        <ListItem>MacOS - <Code>brew install tree</Code></ListItem>
-                        <ListItem>Windows - <Code>Install-Module -Name Tree</Code></ListItem>
-                    </List>
-                </ListItem>
+                <ListItem>Install: <InCode>$ brew install tree</InCode></ListItem>
                 <ListItem>Show the contents of the current directory as a tree</ListItem>
                 <ListItem>
                     Handy flags
                     <List padding="0 0 0 40px">
-                        <ListItem><Code>-d</Code> - Show dirs only</ListItem>
-                        <ListItem><Code>-a</Code> - Show hidden files</ListItem>
-                        <ListItem><Code>-L num</Code> - num is the depth of the tree</ListItem>
+                        <ListItem padding="0 0 5px 0"><InCode>-d</InCode> - Show dirs only</ListItem>
+                        <ListItem padding="0 0 5px 0"><InCode>-a</InCode> - Show hidden files</ListItem>
+                        <ListItem><InCode>-L num</InCode> - num is the depth of the tree</ListItem>
                     </List>
                 </ListItem>
-                <ListItem>Demo...</ListItem>
+                <Appear>
+                    <ListItem>Demo...</ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Search - find</Heading>
             <List>
-                <ListItem><Code>find</Code> comes pre installed on unix</ListItem>
-                <ListItem>On windows the <Code>dir</Code> command is the equivalent</ListItem>
+                <ListItem><InCode>find</InCode> comes pre installed on unix</ListItem>
+                <ListItem>On windows the <InCode>dir</InCode> command is the equivalent</ListItem>
                 <ListItem>Find files unders the given directory tree, recursively</ListItem>
-                <ListItem>
-                    Usage
-                    <List padding="0 0 0 40px">
-                        <ListItem>Find files by extension:<br /><Code>$ find root_path -name "*.ext"</Code></ListItem>
-                        <ListItem>Find files matching path pattern:<br /><Code>$ find root_path -path "**/lib/*"</Code></ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>Demo...</ListItem>
+                <Appear>
+                    <div>
+                        <ListItem>
+                            Usage
+                            <List padding="0 0 0 40px">
+                                <ListItem>Find files by extension:<br /><InCode>$ find root_path -name "*.ext"</InCode></ListItem>
+                                <ListItem>Find files matching path pattern:<br /><InCode>$ find root_path -path "**/lib/*"</InCode></ListItem>
+                            </List>
+                        </ListItem>
+                        <ListItem>Demo...</ListItem>
+                    </div>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Search - "grep"</Heading>
+            <Image src={Ag} width="70%" />
+            <Image src={Rg} width="70%" />
             <List>
                 <ListItem>
                     Install:
                     <List padding="10px 0 10px 40px">
-                        <ListItem><Code style={{fontSize: "2.2rem"}}>brew install the_silver_surfer ripgrep</Code></ListItem>
+                        <ListItem><InCode style={{fontSize: "2rem"}}>$ brew install the_silver_surfer ripgrep</InCode></ListItem>
                     </List>
                 </ListItem>
-                <ListItem><Code>grep</Code> is a command line search tool</ListItem>
+                <ListItem><InCode>grep</InCode> is a command line search tool</ListItem>
                 <ListItem>However grep is slow and not very user friendly</ListItem>
-                <ListItem>The Silver Surfer (<Code>ag</Code>) and ripgrep (<Code>rg</Code>) are two popular, fast, grep replacements with sensible defaults</ListItem>
+                <ListItem>The Silver Surfer (<InCode>ag</InCode>) and ripgrep (<InCode>rg</InCode>) are two popular, fast, grep replacements with sensible defaults</ListItem>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Search - "grep"</Heading>
             <List>
                 <ListItem>
-                    The Silver Surfer (<Code>ag</Code>) and ripgrep (<Code>rg</Code>) defaults include
+                    <InCode>ag</InCode> and <InCode>rg</InCode> defaults include
                     <List padding="0 0 0 40px">
                         <ListItem>Ignores VCS dirs by default</ListItem>
-                        <ListItem>Ignores .gitignored files/dirs and hidden/binary files by default</ListItem>
+                        <ListItem>Ignores <InCode>.gitignored</InCode> files/dirs and hidden/binary files by default</ListItem>
                         <ListItem>Defaults to doing a recursive directory search</ListItem>
                     </List>
                 </ListItem>
                 <ListItem>More intuitive command line flags/options</ListItem>
                 <ListItem>Support config files for global (or project level) customization</ListItem>
-                <ListItem>Demo...</ListItem>
-                <ListItem><Code>ag</Code>/<Code>rg</Code> are amazing for editor integrations</ListItem>
+                <Appear>
+                    <div>
+                        <ListItem>Demo...</ListItem>
+                        <ListItem><InCode>ag</InCode>/<InCode>rg</InCode> are amazing for editor integrations</ListItem>
+                    </div>
+                </Appear>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading fit textColor="tertiary">Discovery and Search - Summary</Heading>
+            <List>
+                <ListItem><InCode>tree</InCode> - lets you explore/discover the structure of a directory</ListItem>
+                <ListItem><InCode>find</InCode> - lets you search for files within a directory</ListItem>
+                <ListItem><InCode>ag</InCode>/<InCode>rg</InCode> - lets you search the contents of files</ListItem>
             </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -412,7 +449,7 @@ export default class Presentation extends React.Component {
                 <ListItem>
                     A good prompt should display useful information, such as
                     <List padding="0 0 0 40px">
-                        <ListItem>Current directory/path (no more <Code>pwd</Code>)</ListItem>
+                        <ListItem>Current directory/path (no more <InCode>pwd</InCode>)</ListItem>
                         <ListItem>Current branch</ListItem>
                         <ListItem>Current repository status</ListItem>
                         <ListItem>Error codes</ListItem>
@@ -440,62 +477,72 @@ export default class Presentation extends React.Component {
             </List>
         </Slide>
         <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">tldr</Heading>
+            <Image src={Tldr} width="70%" />
+            <List>
+                <ListItem>Install: <InCode>$ brew install tldr</InCode></ListItem>
+                <ListItem>Simplied <InCode>man</InCode> pages</ListItem>
+                <ListItem>Provides simple explanation of command and shows practical examples</ListItem>
+                <ListItem>Usage eg: <InCode>$ tldr tar</InCode> instead of<br /><InCode>$ man tar</InCode></ListItem>
+                <Appear>
+                    <ListItem>Demo...</ListItem>
+                </Appear>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Aliases</Heading>
             <List>
                 <ListItem>Aliases are useful for annoying to type commands or for commands where you always want some setting applied</ListItem>
-                <ListItem><Code>alias d="docker"</Code></ListItem>
-                <ListItem><Code>alias dc="docker-compose"</Code></ListItem>
-                <ListItem><Code>alias tree="tree -I node_modules"</Code></ListItem>
-                <ListItem>VM ssh commands</ListItem>
+                <ListItem>Aliases can/should be added to your shell config file so they persist</ListItem>
+                <ListItem>
+                    Examples:
+                    <List padding="0 0 0 40px">
+                        <ListItem padding="0 0 5px 0"><InCode>alias d="docker"</InCode></ListItem>
+                        <ListItem padding="0 0 2px 0"><InCode>alias dc="docker-compose"</InCode></ListItem>
+                        <ListItem padding="0 0 5px 0"><InCode style={{fontSize: "2.5rem"}}>alias tree="tree -I node_modules"</InCode></ListItem>
+                        <ListItem>VM ssh commands</ListItem>
+                    </List>
+                </ListItem>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">Paste and Copy</Heading>
             <List>
-                <ListItem>Mac - <Code>pbcopy</Code>, <Code>pbpaste</Code></ListItem>
-                <ListItem>Unix - <Code>xclip</Code></ListItem>
-                <ListItem>Windows - <Code>clip</Code></ListItem>
+                <ListItem>Mac - <InCode>pbcopy</InCode>, <InCode>pbpaste</InCode></ListItem>
+                <ListItem>Unix - <InCode>xclip</InCode></ListItem>
+                <ListItem>Windows - <InCode>clip</InCode></ListItem>
                 <ListItem>Instead of having to manually select and copy output from a command, just pipe it directly into your clipboard!</ListItem>
-                <ListItem>e.g. <Code>$ cat example.json | pbcopy</Code></ListItem>
-            </List>
-        </Slide>
-        <Slide progressColor="quartenary">
-            <Heading size={2} textColor="tertiary">tldr</Heading>
-            <Image src={Tldr} width="70%" />
-            <List>
-                <ListItem>
-                    Install:
-                    <List padding="10px 0 10px 40px">
-                        <ListItem><Code>$ brew install tldr</Code></ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>Simplied <Code>man</Code> pages</ListItem>
-                <ListItem>Provides simple explanation of command and shows practical examples</ListItem>
-                <ListItem>Usage eg: <Code>$ tldr tar</Code> instead of<br /><Code>$ man tar</Code></ListItem>
+                <ListItem>e.g. <InCode>$ cat example.json | pbcopy</InCode></ListItem>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">tmux</Heading>
             <Image src={Tmux} width="70%" />
             <List>
-                <ListItem>
-                    Install:
-                    <List padding="10px 0 10px 40px">
-                        <ListItem><Code>$ brew install tmux</Code></ListItem>
-                    </List>
-                </ListItem>
-                <ListItem><Code>tmux</Code> is a terminal multiplexer</ListItem>
+                <ListItem>Install: <InCode>$ brew install tmux</InCode></ListItem>
+                <ListItem><InCode>tmux</InCode> is a terminal multiplexer</ListItem>
                 <ListItem>Similar to GNU Screen, but newer/better</ListItem>
-                <ListItem>In laymans terms, it lets you manage multiple sessions within a single terminal window</ListItem>
-                <ListItem>Each session is composed of windows and panes</ListItem>
+                <Appear>
+                    <div>
+                        <ListItem>In laymans terms, it lets you manage multiple sessions within a single terminal window</ListItem>
+                        <ListItem>Each session is composed of windows and panes</ListItem>
+                    </div>
+                </Appear>
             </List>
         </Slide>
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">tmux</Heading>
             <List>
                 <ListItem>Useful if you work on multiple projects/things that require some set of shells</ListItem>
-                <ListItem>MUST HAVE if you often work on remote servers!</ListItem>
-                <ListItem>Warning: This is not just a command, it is an application. And as such, has a steeper learning curve</ListItem>
+                <Appear>
+                    <ListItem>MUST HAVE if you often work on remote servers!</ListItem>
+                </Appear>
+                <Appear>
+                    <div>
+                        <ListItem>Warning: This is not just a command, it is an application. And as such, has a steeper learning curve</ListItem>
+                        <ListItem>tmux could easily have a whole hour dedicated to it</ListItem>
+                    </div>
+                </Appear>
             </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -507,19 +554,23 @@ export default class Presentation extends React.Component {
                 <ListItem>
                     "SysAdmin" commands
                     <List padding="0 0 0 40px">
-                        <ListItem><Code>sed</Code>, <Code>awk</Code>, <Code>netstat</Code>, <Code>tail</Code></ListItem>, etc
+                        <ListItem><InCode>sed</InCode>, <InCode>awk</InCode>, <InCode>netstat</InCode>, <InCode>tail</InCode></ListItem> etc
                     </List>
                 </ListItem>
-                <ListItem>
-                    Domain specific commands
-                    <List padding="0 0 0 40px">
-                        <ListItem><Code>jq</Code> - Command line JSON processor</ListItem>
-                        <ListItem>csvkit - Suite of tools for working with CSV</ListItem>
-                        <ListItem>HTTPie (<Code>http</Code>) - A user friendly cURL replacement</ListItem>
-                        <ListItem><Code>hub</Code> - hub helps you win at git</ListItem>
-                    </List>
-                </ListItem>
-                <ListItem>Theming</ListItem>
+                <Appear>
+                    <ListItem>
+                        Domain specific commands
+                        <List padding="0 0 0 40px">
+                            <ListItem><InCode>jq</InCode> - Command line JSON processor</ListItem>
+                            <ListItem>csvkit - Suite of tools for working with CSV</ListItem>
+                            <ListItem>HTTPie (<InCode>http</InCode>) - A user friendly cURL replacement</ListItem>
+                            <ListItem><InCode>hub</InCode> - hub helps you win at git</ListItem>
+                        </List>
+                    </ListItem>
+                </Appear>
+                <Appear>
+                    <ListItem>Theming</ListItem>
+                </Appear>
             </List>
         </Slide>
         <Slide bgColor="tertiary">
@@ -528,7 +579,17 @@ export default class Presentation extends React.Component {
         <Slide progressColor="quartenary">
             <Heading size={2} textColor="tertiary">References</Heading>
             <List>
-                <ListItem>https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340</ListItem>
+                <ListItem>
+                    CLI tools lists
+                    <List padding="0 0 0 40px">
+                        <ListItem><a href="https://github.com/alebcay/awesome-shell">github.com/alebcay/awesome-shell</a></ListItem>
+                        <ListItem><a style={{fontSize: "2.5rem"}} href="https://github.com/agarrharr/awesome-cli-apps">github.com/agarrharr/awesome-cli-apps</a></ListItem>
+                        <ListItem><a href="https://github.com/k4m4/terminals-are-sexy">github.com/k4m4/terminals-are-sexy</a></ListItem>
+                    </List>
+                </ListItem>
+                <ListItem>Tmux intro - <a href="https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340">hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340</a></ListItem>
+                <ListItem>Blog post - <a href="https://dev.to/sobolevn/instant-100-command-line-productivity-boost">dev.to/sobolevn/instant-100-command-line-productivity-boost</a></ListItem>
+                <ListItem>My Dotfiles - <a href="https://github.com/nwaywood/dotfiles">github.com/nwaywood/dotfiles</a></ListItem>
             </List>
         </Slide>
       </Deck>
