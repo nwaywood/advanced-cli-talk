@@ -554,7 +554,7 @@ export default class Presentation extends React.Component {
                 <ListItem>
                     "SysAdmin" commands
                     <List padding="0 0 0 40px">
-                        <ListItem><InCode>sed</InCode>, <InCode>awk</InCode>, <InCode>netstat</InCode>, <InCode>tail</InCode></ListItem> etc
+                        <ListItem><InCode>sed</InCode>, <InCode>awk</InCode>, <InCode>netstat</InCode>, <InCode>tail</InCode>, <InCode>du</InCode></ListItem> etc
                     </List>
                 </ListItem>
                 <Appear>
