@@ -494,13 +494,35 @@ export default class Presentation extends React.Component {
             <List>
                 <ListItem>Aliases are useful for annoying to type commands or for commands where you always want some setting applied</ListItem>
                 <ListItem>Aliases can/should be added to your shell config file so they persist</ListItem>
+                <Appear>
+                    <ListItem>
+                        Examples:
+                        <List padding="0 0 0 40px">
+                            <ListItem padding="0 0 5px 0"><InCode>alias ll="ls -lhG"</InCode></ListItem>
+                            <ListItem padding="0 0 2px 0"><InCode>alias dc="docker-compose"</InCode></ListItem>
+                            <ListItem padding="0 0 5px 0"><InCode style={{fontSize: "2.5rem"}}>alias tree="tree -I node_modules"</InCode></ListItem>
+                            <ListItem padding="0 0 5px 0"><InCode>alias find="find . -name"</InCode></ListItem>
+                            <ListItem>VM ssh commands</ListItem>
+                        </List>
+                    </ListItem>
+                </Appear>
+            </List>
+        </Slide>
+        <Slide progressColor="quartenary">
+            <Heading size={2} textColor="tertiary">Functions</Heading>
+            <List>
+                <ListItem>Functions are a more powerful tool for command modification than aliases</ListItem>
                 <ListItem>
                     Examples:
                     <List padding="0 0 0 40px">
-                        <ListItem padding="0 0 5px 0"><InCode>alias d="docker"</InCode></ListItem>
-                        <ListItem padding="0 0 2px 0"><InCode>alias dc="docker-compose"</InCode></ListItem>
-                        <ListItem padding="0 0 5px 0"><InCode style={{fontSize: "2.5rem"}}>alias tree="tree -I node_modules"</InCode></ListItem>
-                        <ListItem>VM ssh commands</ListItem>
+                        <ListItem padding="0 0 5px 0"><InCode>mkdir</InCode> and <InCode>cd</InCode> in one
+                                <CodePane style={{ fontSize: "30px", paddingTop: "10px" }} lang="javascript" source={`mkcd () {\n\ttest -d "$1" || mkdir "$1" && cd "$1"\n}`} />
+                        </ListItem>
+                        <Appear>
+                            <ListItem padding="0 0 5px 0">Shell into a docker container
+                                    <CodePane style={{ fontSize: "30px", paddingTop: "10px" }} lang="javascript" source={`docker-access () {\n\tdocker exec -it "$1" /bin/bash\n}`} />
+                            </ListItem>
+                        </Appear>
                     </List>
                 </ListItem>
             </List>
