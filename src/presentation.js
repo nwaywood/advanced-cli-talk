@@ -533,6 +533,7 @@ export default class Presentation extends React.Component {
                 <ListItem>Mac - <InCode>pbcopy</InCode>, <InCode>pbpaste</InCode></ListItem>
                 <ListItem>Unix - <InCode>xclip</InCode></ListItem>
                 <ListItem>Windows - <InCode>clip</InCode></ListItem>
+                <ListItem>In addition to being able to redirect stdout to a file (<InCode>&gt;</InCode>), you can also pipe to clipboard</ListItem>
                 <ListItem>Instead of having to manually select and copy output from a command, just pipe it directly into your clipboard!</ListItem>
                 <ListItem>e.g. <InCode>$ cat example.json | pbcopy</InCode></ListItem>
             </List>
@@ -564,6 +565,9 @@ export default class Presentation extends React.Component {
                         <ListItem>Warning: This is not just a command, it is an application. And as such, has a steeper learning curve</ListItem>
                         <ListItem>tmux could easily have a whole hour dedicated to it</ListItem>
                     </div>
+                </Appear>
+                <Appear>
+                    <ListItem>Note: A lighter weight alternative to tmux is native backgrounding functionality, i.e. <InCode>&amp;</InCode></ListItem>
                 </Appear>
             </List>
         </Slide>
